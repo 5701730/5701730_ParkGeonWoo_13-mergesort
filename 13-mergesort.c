@@ -82,22 +82,23 @@ void merge(int arr[], int left, int mid, int right) {
 //반복적으로 구현(보너스)
 void doMergeSort(int arr[], int size) {
     int rounds = 0; // 병합 호출 횟수
-
+    //ㅂ 부분 배열크기를 1부터 시작
     for (int curr_size = 1; curr_size <= size - 1; curr_size *= 2) {
+        //배열의 시작부분을 순차적으로 증가함
         for (int left_start = 0; left_start < size - 1; left_start += 2 * curr_size) {
-            int mid = left_start + curr_size - 1;
-            int right_end = (left_start + 2 * curr_size - 1 < size - 1) ? (left_start + 2 * curr_size - 1) : (size - 1);
+            int mid = left_start + curr_size - 1;//중간점
+            int right_end = (left_start + 2 * curr_size - 1 < size - 1) ? (left_start + 2 * curr_size - 1) : (size - 1);//끝부분
 
             merge(arr, left_start, mid, right_end);
             rounds++;
-
+            //출력조건을 만족시키기위해서 10번째 병합할때 마다 출력
             if (rounds % 10 == 0&&isFirst==0) {
                 
                 for (int i = 0; i < 10; i++) {
                     printf("%3d ", arr[i]);
                 }
                 printf("| ");
-                for (int i = SIZE / 2 - 1; i < SIZE / 2 + 10; i++) {
+                for (int i = SIZE / 2 - 1; i < SIZE / 2 + 10; i++) {//중앙-1~중앙+10 
                     printf("%3d ", arr[i]);
                 }
                 printf("\n\n");
